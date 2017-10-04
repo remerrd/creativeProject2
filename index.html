@@ -1,0 +1,35 @@
+
+<head>
+    <script
+    src="http://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+    </script>
+<script>
+    var url = "https://api.nytimes.com/svc/books/v3/lists.json";
+    url += '?' + $.param({
+    'api-key': "28d2e7d07f9b498d9918c873255058eb",
+    'list': "e-book-fiction"
+    });
+    $.ajax({
+    url: url,
+    method: 'GET',
+    }).done(function(result) {
+    console.log(result);
+
+    var bookListHtml = "";
+    bookListHtml += result['results'][0]['bestsellers_date'];
+
+    $("#booklist").html=bookListHtml;
+
+    }).fail(function(err) {
+    throw err;
+    });
+</script>
+</head>
+
+<body>
+    <h1>Booklist</h1>
+    <p>What book would you like to read?</p>
+    <div id="booklist"></div>
+</body>
