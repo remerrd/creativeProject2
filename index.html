@@ -6,30 +6,26 @@
     crossorigin="anonymous">
     </script>
 <script>
-    var url = "https://api.nytimes.com/svc/books/v3/lists.json";
-    url += '?' + $.param({
-    'api-key': "28d2e7d07f9b498d9918c873255058eb",
-    'list': "e-book-fiction"
+    var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
+    myurl += '?' + $.param({
+        "api-key": "28d2e7d07f9b498d9918c873255058eb",
+        "list": "e-book-fiction"
     });
-    $.ajax({
-    url: url,
-    method: 'GET',
-    }).done(function(result) {
-    console.log(result);
-
-    var bookListHtml = "";
-    bookListHtml += result['results'][0]['bestsellers_date'];
-
-    $("#booklist").html=bookListHtml;
-
-    }).fail(function(err) {
-    throw err;
-    });
+    var settings = {
+        "url": myurl,
+        "method": "GET",
+        "success":function(parsed_json){
+            var theResults = parsed_json.results[0];
+            console.log(theResults);
+            $("#bookList").html("<p>Test</p>");
+        }
+    }
+    $.ajax(settings);
 </script>
 </head>
 
 <body>
     <h1>Booklist</h1>
     <p>What book would you like to read?</p>
-    <div id="booklist"></div>
+    <div id="bookList">...</div>
 </body>
