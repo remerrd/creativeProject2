@@ -17,7 +17,28 @@
         "success":function(parsed_json){
             var theResults = parsed_json.results[0];
             console.log(theResults);
-            $("#bookList").html("<p>Test</p>");
+
+            var bookListHtml = "";
+            bookListHtml += "<p>";
+
+            for (var i = 0; i < 5; i++){
+                bookListHtml += "<h3>";
+                bookListHtml += parsed_json.results[i].book_details[0].title;
+                bookListHtml += "</h3>";
+
+                bookListHtml += "<ul>";
+                bookListHtml += "<li>author:";
+                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += "</li>";
+
+                bookListHtml += "<li>description:";
+                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += "</li>";
+            }
+            bookListHtml += "</p>";
+
+
+            $("#bookList").html(bookListHtml);
         }
     }
     $.ajax(settings);
