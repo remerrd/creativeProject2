@@ -6,6 +6,14 @@
     crossorigin="anonymous">
     </script>
 <script>
+    $(document).ready(function() {
+    var index = 0;
+    $('#nextButton').click(function(e){
+        index += 5;
+        e.preventDefault();
+        console.log(index);
+    });
+    
     var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
     myurl += '?' + $.param({
         "api-key": "28d2e7d07f9b498d9918c873255058eb",
@@ -21,19 +29,25 @@
             var bookListHtml = "";
             bookListHtml += "<p>";
 
-            for (var i = 0; i < 5; i++){
+            for (var i = index; i < index+5; i++){
                 bookListHtml += "<h3>";
                 bookListHtml += parsed_json.results[i].book_details[0].title;
                 bookListHtml += "</h3>";
 
                 bookListHtml += "<ul>";
-                bookListHtml += "<li>author:";
+                bookListHtml += "<li>Author: ";
                 bookListHtml += parsed_json.results[i].book_details[0].author;
                 bookListHtml += "</li>";
 
-                bookListHtml += "<li>description:";
+                bookListHtml += "<li>Description: ";
                 bookListHtml += parsed_json.results[i].book_details[0].author;
                 bookListHtml += "</li>";
+
+                bookListHtml += "<li>Link: <a href=\"";
+                bookListHtml += parsed_json.results[i].amazon_product_url;
+                bookListHtml += "\">Click here to buy</a></li>";
+
+                bookListHtml += "</ul>";
             }
             bookListHtml += "</p>";
 
@@ -42,6 +56,7 @@
         }
     }
     $.ajax(settings);
+    });
 </script>
 </head>
 
@@ -49,4 +64,6 @@
     <h1>Booklist</h1>
     <p>What book would you like to read?</p>
     <div id="bookList">...</div>
+
+    <input type="submit" id="nextButton" value="Next">
 </body>
