@@ -1,5 +1,7 @@
 
 <head>
+    <link rel="stylesheet" href="style.css">
+
     <script
     src="http://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -8,7 +10,7 @@
 <script>
     $(document).ready(function() {
         var index = 0;
-    
+
         var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
     myurl += '?' + $.param({
         "api-key": "28d2e7d07f9b498d9918c873255058eb",
@@ -25,9 +27,9 @@
             bookListHtml += "<p>";
 
             for (var i = index; i < index+5; i++){
-                bookListHtml += "<h3>";
+                bookListHtml += "<h4>";
                 bookListHtml += parsed_json.results[i].book_details[0].title;
-                bookListHtml += "</h3>";
+                bookListHtml += "</h4>";
 
                 bookListHtml += "<ul>";
                 bookListHtml += "<li>Author: ";
@@ -35,7 +37,7 @@
                 bookListHtml += "</li>";
 
                 bookListHtml += "<li>Description: ";
-                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += parsed_json.results[i].book_details[0].description;
                 bookListHtml += "</li>";
 
                 bookListHtml += "<li>Link: <a href=\"";
@@ -59,7 +61,7 @@
             e.preventDefault();
             console.log(index);
 
-            
+
     var myurl = "https://api.nytimes.com/svc/books/v3/lists.json";
     myurl += '?' + $.param({
         "api-key": "28d2e7d07f9b498d9918c873255058eb",
@@ -76,9 +78,9 @@
             bookListHtml += "<p>";
 
             for (var i = index; i < index+5; i++){
-                bookListHtml += "<h3>";
+                bookListHtml += "<h4>";
                 bookListHtml += parsed_json.results[i].book_details[0].title;
-                bookListHtml += "</h3>";
+                bookListHtml += "</h4>";
 
                 bookListHtml += "<ul>";
                 bookListHtml += "<li>Author: ";
@@ -86,7 +88,7 @@
                 bookListHtml += "</li>";
 
                 bookListHtml += "<li>Description: ";
-                bookListHtml += parsed_json.results[i].book_details[0].author;
+                bookListHtml += parsed_json.results[i].book_details[0].description;
                 bookListHtml += "</li>";
 
                 bookListHtml += "<li>Link: <a href=\"";
